@@ -59,12 +59,12 @@ Get favorite movies list:
 `http://localhost:8080/account/favorites`
 
 Add a movie (POST) to your favorite movies list:
-```http://localhost:8080/account/favorites
-
-{
+`http://localhost:8080/account/favorites`
+Request Body:
+`{
  "movie_id": 103,
  "favorite": true
-}```
+}`
 
 
 
