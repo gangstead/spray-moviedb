@@ -20,3 +20,52 @@ The project builds and deploys to an embedded Jetty server using the [xsbt-web-p
 
 To start the application, cd to the *spray-moviedb* directory, start `sbt`, and then execute `>container:start`
 
+
+Request catalog
+---------------
+
+Sample requests are listed below:
+
+####Movies / People
+
+Search the movie catalog (query required, page optional):
+`http://localhost:8080/movies?query=fight&page=1`
+
+Get a movie by id:
+`http://localhost:8080/movies/100`
+
+Get movie cast by movie id:
+`http://localhost:8080/movies/100/cast`
+
+Get movie trailers by movie id:
+`http://localhost:8080/movies/100/trailers`
+
+Search for people (query required, page optional):
+`http://localhost:8080/people?query=Spacey&page=1`
+
+####Account / Favorites
+
+The requests in this section require that you log into your moviedb account and grant permissions to the locally running app to access your user data.
+
+1.  Open a browser and go to http://localhost:8080/login
+2.  Login
+3.  Select "Allow"
+
+
+Get account information:
+`http://localhost:8080/account`
+
+Get favorite movies list:
+`http://localhost:8080/account/favorites`
+
+Add a movie (POST) to your favorite movies list:
+`http://localhost:8080/account/favorites`
+
+Request Body:
+`{
+ "movie_id": 103,
+ "favorite": true
+}`
+
+
+
