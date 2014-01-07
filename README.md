@@ -11,7 +11,7 @@ Spring is used for no particularly good reason other than to show that it can be
 Running the app
 ---------------
 
-After cloning, the first thing you'll want to do to get any use out of this project is to [register an account and request an API key at themoviedb.org](http://docs.themoviedb.apiary.io/).
+After cloning, the first thing you'll want to do before building and running the project is to [register an account and request an API key at themoviedb.org](http://docs.themoviedb.apiary.io/).
 
 Once you obtain an API key, open GlobalConstants.scala and replace *putyourmoviedbapikeyhere* with your API key.
 
@@ -60,7 +60,6 @@ Get favorite movies list:
 
 Add a movie (POST) to your favorite movies list:
 `http://localhost:8080/account/favorites`
-
 Request Body:
 `{
  "movie_id": 103,
