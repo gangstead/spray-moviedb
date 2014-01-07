@@ -1,7 +1,7 @@
 spray-moviedb
 =============
 
-An exploration in using the Spray routing and HTTP client libraries, along with Spring and themoviedb.org API
+An exploration in using the [Spray](http://spray.io/) routing and HTTP client libraries, along with Spring and themoviedb.org API
 
 This project was created primarily as an excuse to play around with the Spray libraries.  It's essentially a set of proxy services for a very small subset of the API provided by themoviedb.org.  The application uses Spray's routing DSL to define a set of RESTful services on the front end, and the Http client library to integrate with themoviedb.org on the backend.
 
