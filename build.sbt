@@ -37,5 +37,3 @@ libraryDependencies ++= {
 }
 
 seq(webSettings: _*)
-
-env in Compile := Some(file(".") / "jetty-env.xml" asFile)
