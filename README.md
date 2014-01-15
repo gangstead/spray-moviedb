@@ -15,6 +15,7 @@ After cloning, the first thing you'll want to do before building and running the
 
 Once you obtain an API key, open GlobalConstants.scala and replace *putyourmoviedbapikeyhere* with your API key.
 
+If you want to import into Eclipse you must first oepn `sbt` then execute `>eclipse`.  This builds the Eclipse project files.
 
 The project builds and deploys to an embedded Jetty server using the [xsbt-web-plugin](https://github.com/JamesEarlDouglas/xsbt-web-plugin).
 
