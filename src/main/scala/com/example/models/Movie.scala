@@ -91,6 +91,21 @@ object MovieJsonProtocol extends DefaultJsonProtocol {
                 runtime.convertTo[Option[Long]],
                 tagline.convertTo[Option[String]],
                 spokenLanguages.convertTo[Option[List[Language]]])
+        case Seq(JsNumber(id), 
+              JsString(title), 
+              releaseDate, 
+              posterPath) =>
+          new Movie(id.toLong, 
+                title, 
+                releaseDate.convertTo[Option[String]], 
+                posterPath.convertTo[Option[String]],
+                None,
+                None,
+                None,
+                None,
+                None,
+                None,
+                None)
         case _ => throw new DeserializationException("Movie expected")
       }
     }
