@@ -70,40 +70,6 @@ object MovieJsonProtocol extends DefaultJsonProtocol {
           fields.get("runtime").map(_.convertTo[Long]),
           fields.get("tagline").map(_.convertTo[String]),
           fields.get("spoken_languages").map(_.convertTo[List[Language]]))
-//      value.asJsObject.getFields("id", 
-//          "title", 
-//          "release_date",
-//          "poster_path",
-//          "overview",
-//          "budget",
-//          "genres",
-//          "revenue",
-//          "runtime",
-//          "tagline",
-//          "spoken_languages") match {
-//        case Seq(JsNumber(id), 
-//              JsString(title), 
-//              releaseDate, 
-//              posterPath,
-//              overview,
-//              budget,
-//              genres,
-//              revenue,
-//              runtime,
-//              tagline,
-//              spokenLanguages) =>
-//          new Movie(id.toLong, 
-//                title, 
-//                releaseDate.convertTo[Option[String]], 
-//                posterPath.convertTo[Option[String]],
-//                overview.convertTo[Option[String]],
-//                budget.convertTo[Option[Long]],
-//                genres.convertTo[Option[List[Genre]]],
-//                revenue.convertTo[Option[Long]],
-//                runtime.convertTo[Option[Long]],
-//                tagline.convertTo[Option[String]],
-//                spokenLanguages.convertTo[Option[List[Language]]])
-//      }
     }
   }
 }
