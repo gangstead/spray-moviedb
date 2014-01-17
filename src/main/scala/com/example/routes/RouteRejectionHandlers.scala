@@ -10,8 +10,8 @@ import spray.routing.RejectionHandler
 trait RouteRejectionHandlers extends HttpService {
   
   implicit val myRejectionHandler = RejectionHandler {
-    case MissingCookieRejection(_) :: _ => redirect("http://localhost:8080/login", StatusCodes.TemporaryRedirect)
-    case AuthorizationFailedRejection :: _ => redirect("http://localhost:8080/login", StatusCodes.TemporaryRedirect)
+    case MissingCookieRejection(_) :: _ => redirect("/login", StatusCodes.TemporaryRedirect)
+    case AuthorizationFailedRejection :: _ => redirect("/login", StatusCodes.TemporaryRedirect)
   } 
 
 }
