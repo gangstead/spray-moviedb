@@ -19,7 +19,7 @@ trait RouteExceptionHandlers extends HttpService {
     case t: Throwable =>
       requestUri { uri =>
         log.warning("Request to {} could not be handled normally", uri)
-        complete(StatusCodes.InternalServerError, "Wouldn't you like to know what happened?")
+        complete(StatusCodes.InternalServerError, "Wouldn't you like to know what happened?" + t)
       }  
   }    
 

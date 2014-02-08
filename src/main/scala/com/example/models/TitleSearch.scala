@@ -15,12 +15,11 @@ case class TitleSearchResults(val page: Long,
     val total_pages: Long,
     val total_results: Long)
 
-object TitleSearchImplicits {
-  import com.example.models.MovieImplicits._
-  implicit def dbToModel(t: TitleSearchResultsMovieDb): TitleSearchResults = {
-    TitleSearchResults(t.page, t.results.map(MovieDbToMovie(_)), t.total_pages, t.total_results)
+object TitleSearchConverter {
+  import com.example.models.MovieConverter._
+  def dbToModel(t: TitleSearchResultsMovieDb): TitleSearchResults = {
+    TitleSearchResults(t.page, t.results map toMovie, t.total_pages, t.total_results)
   }
-  implicit def dbToModel (o: Option[TitleSearchResultsMovieDb]): Option[TitleSearchResults] = o.map(dbToModel(_))
 }
     
 object TitleSearchJsonProtocol extends DefaultJsonProtocol{

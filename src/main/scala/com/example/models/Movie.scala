@@ -50,8 +50,8 @@ object MovieConstants {
   val POSTER_PATH_PREFIX_W500 = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500"
 }
 
-object MovieImplicits {
-  implicit def MovieDbToMovie(m: MovieDb): Movie = {
+object MovieConverter {
+  def toMovie(m: MovieDb): Movie = {
     Movie(m.id,
         m.title,
         m.release_date,
@@ -66,11 +66,10 @@ object MovieImplicits {
         m.tagline,
         m.spoken_languages
     )}
-  implicit def MovieDbOptionToMovieOption(mo: Option[MovieDb]): Option[Movie] = mo.map(MovieDbToMovie(_))
 }
 
-object MovieJsonProtocol extends DefaultJsonProtocol {
 
+object MovieJsonProtocol extends DefaultJsonProtocol {
   implicit val genresFormat = jsonFormat2(Genre)
   implicit val languageFormat = jsonFormat1(Language)
   implicit val MovieFormat = jsonFormat13(Movie)
