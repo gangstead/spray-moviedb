@@ -1,6 +1,7 @@
 package com.example.routes
 
-import scala.concurrent.duration.Duration
+import scala.concurrent.duration.DurationInt
+import scala.language.postfixOps
 
 import org.springframework.context.annotation.Scope
 
@@ -24,7 +25,7 @@ class ApiRouter @Inject()(asb: ActorSystemBean) extends Actor
 
   def actorRefFactory = context
   
-  val simpleCache = routeCache(maxCapacity = 1000, timeToIdle = Duration("30 min"))
+  val simpleCache = routeCache(maxCapacity = 1000, timeToIdle = 30 minutes)
 
   def receive = runRoute {
     compressResponseIfRequested(){

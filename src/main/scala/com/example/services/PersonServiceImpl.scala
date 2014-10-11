@@ -1,8 +1,6 @@
 package com.example.services
 
-import scala.concurrent.Await
-import scala.concurrent.duration.DurationInt
-import scala.language.postfixOps
+import scala.concurrent.Future
 
 import com.example.config.ActorSystemBean
 import com.example.models.PersonSearchJsonProtocol._
@@ -27,12 +25,12 @@ class PersonServiceImpl @Inject()(asb: ActorSystemBean) extends PersonService {
     request.withEffectiveUri(false, Host("api.themoviedb.org", 80)) ~> sendReceive
   }
   
-  def getPersonSearchResults(query: PersonSearchQuery): Option[PersonSearchResults] = {
+  def getPersonSearchResults(query: PersonSearchQuery): Future[Option[PersonSearchResults]] = {
     val pipeline = defaultRequest ~> unmarshal[Option[PersonSearchResults]]
     val responseFuture = pipeline {
 	  Get("/3/search/person" + API_KEY_QUERY_PARAM + query.queryParamsAmpPrefix)
 	}
-	Await.result(responseFuture.mapTo[Option[PersonSearchResults]], 5 seconds)      
+    responseFuture    
   }
   
 }

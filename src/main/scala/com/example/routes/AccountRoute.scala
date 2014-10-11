@@ -2,6 +2,10 @@ package com.example.routes
 
 import org.springframework.context.annotation.Scope
 
+import scala.concurrent.Await
+import scala.concurrent.duration.DurationInt
+import scala.language.postfixOps
+
 import com.example.config.ActorSystemBean
 import com.example.models.AccountJsonProtocol._
 import com.example.models.FavoritesAdd
@@ -39,7 +43,7 @@ class AccountRoute @Inject()(as: AuthenticationService,
   
   def receive = runRoute {
     cookie(REQUEST_TOKEN) { token =>
-      val sessionId = getSessionForRequestToken(token)
+      val sessionId = Await.result(getSessionForRequestToken(token), 5 seconds)
       authorize(sessionDefined(sessionId)){
         get {
           pathEnd {

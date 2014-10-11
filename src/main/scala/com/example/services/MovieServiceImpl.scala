@@ -1,8 +1,6 @@
 package com.example.services
 
 import scala.concurrent.Future
-import scala.concurrent.duration.DurationInt
-import scala.language.postfixOps
 
 import com.example.config.ActorSystemBean
 import com.example.models.Movie
