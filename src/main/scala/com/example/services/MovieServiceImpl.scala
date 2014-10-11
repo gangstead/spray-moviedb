@@ -1,6 +1,6 @@
 package com.example.services
 
-import scala.concurrent.Await
+import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
@@ -33,36 +33,36 @@ class MovieServiceImpl @Inject()(asb: ActorSystemBean) extends MovieService {
     request.withEffectiveUri(false, Host("api.themoviedb.org", 80)) ~> sendReceive
   }
   
-  def getMovie(movieId: Long): Option[Movie] = {
-	val pipeline = defaultRequest ~> unmarshal[Option[Movie]]
-	val responseFuture = pipeline {
-	  Get("/3/movie/" + movieId + API_KEY_QUERY_PARAM)
-	}
-	Await.result(responseFuture.mapTo[Option[Movie]], 5 seconds)
+  def getMovie(movieId: Long): Future[Option[Movie]] = {
+  	val pipeline = defaultRequest ~> unmarshal[Option[Movie]]
+  	val responseFuture = pipeline {
+  	  Get("/3/movie/" + movieId + API_KEY_QUERY_PARAM)
+  	}
+	  responseFuture
   }
   
-  def getMovieCast(movieId: Long): Option[MovieCast] = {
+  def getMovieCast(movieId: Long): Future[Option[MovieCast]] = {
     val pipeline = defaultRequest ~> unmarshal[Option[MovieCast]]
-	val responseFuture = pipeline {
-	  Get("/3/movie/" + movieId + "/casts" + API_KEY_QUERY_PARAM)
-	}
-	Await.result(responseFuture.mapTo[Option[MovieCast]], 5 seconds)
+  	val responseFuture = pipeline {
+  	  Get("/3/movie/" + movieId + "/casts" + API_KEY_QUERY_PARAM)
+  	}
+    responseFuture
   }
   
-  def getTrailers(movieId: Long): Option[Trailers] = {
+  def getTrailers(movieId: Long): Future[Option[Trailers]] = {
     val pipeline = defaultRequest ~> unmarshal[Option[Trailers]]
-	val responseFuture = pipeline {
-	  Get("/3/movie/" + movieId + "/trailers" + API_KEY_QUERY_PARAM)
-	}
-	Await.result(responseFuture.mapTo[Option[Trailers]], 5 seconds)    
+  	val responseFuture = pipeline {
+  	  Get("/3/movie/" + movieId + "/trailers" + API_KEY_QUERY_PARAM)
+  	}
+    responseFuture
   }  
   
-  def getTitleSearchResults(query: TitleSearchQuery): Option[TitleSearchResults] = {
+  def getTitleSearchResults(query: TitleSearchQuery): Future[Option[TitleSearchResults]] = {
     val pipeline = defaultRequest ~> unmarshal[Option[TitleSearchResults]]
     val responseFuture = pipeline {
-	  Get("/3/search/movie" + API_KEY_QUERY_PARAM + query.queryParamsAmpPrefix)
-	}
-	Await.result(responseFuture.mapTo[Option[TitleSearchResults]], 5 seconds)      
+  	  Get("/3/search/movie" + API_KEY_QUERY_PARAM + query.queryParamsAmpPrefix)
+  	}
+    responseFuture
   }
   
 }

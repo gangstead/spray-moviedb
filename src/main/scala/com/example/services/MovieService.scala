@@ -5,12 +5,13 @@ import com.example.models.MovieCast
 import com.example.models.TitleSearchQuery
 import com.example.models.TitleSearchResults
 import com.example.models.Trailers
+import scala.concurrent.Future
 
 trait MovieService {
   
-  def getMovie(movieId: Long): Option[Movie]
-  def getMovieCast(movieId: Long): Option[MovieCast]
-  def getTrailers(movieId: Long): Option[Trailers]
-  def getTitleSearchResults(query: TitleSearchQuery): Option[TitleSearchResults]
+  def getMovie(movieId: Long): Future[Option[Movie]]
+  def getMovieCast(movieId: Long): Future[Option[MovieCast]]
+  def getTrailers(movieId: Long): Future[Option[Trailers]]
+  def getTitleSearchResults(query: TitleSearchQuery): Future[Option[TitleSearchResults]]
 
 }
